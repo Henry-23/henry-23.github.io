@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"henrychi.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="和Git笔记一样，记了一些随用随查的东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 学习笔记">
+<meta property="og:url" content="http://henrychi.top/2021/02/23/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Henry&#39;s Blog">
+<meta property="og:description" content="和Git笔记一样，记了一些随用随查的东西。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-16T12:23:27.000Z">
+<meta property="article:author" content="Henry">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://henrychi.top/2021/02/23/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux 学习笔记 | Henry's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Henry's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://henrychi.top/2021/02/23/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Henry">
+      <meta itemprop="description" content="早睡早起">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henry's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux 学习笔记
+        </h1>
+
+        <div class="post-meta">
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-23T00:00:00+08:00">2021-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 20:23:27" itemprop="dateModified" datetime="2022-07-16T20:23:27+08:00">2022-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">和Git笔记一样，记了一些随用随查的东西。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Linux-学习笔记"><a href="#Linux-学习笔记" class="headerlink" title="Linux 学习笔记"></a>Linux 学习笔记</h1><h2 id="Part-1：-bash"><a href="#Part-1：-bash" class="headerlink" title="Part 1： bash"></a>Part 1： bash</h2><h3 id="1-压缩文件"><a href="#1-压缩文件" class="headerlink" title="1. 压缩文件"></a>1. 压缩文件</h3><p>常见的拓展名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">*.zip  		zip 程序压缩的文件;</span><br><span class="line">*.gz   		gzip 程序压缩的文件;<span class="comment">#windows中的WinRaR/7Zip可解压</span></span><br><span class="line">*.bz2  		bzip2 程序压缩的文件;<span class="comment">#比gzip更好</span></span><br><span class="line">*.xz   		xz 程序压缩的文件;<span class="comment">#压缩比更高</span></span><br><span class="line"><span class="comment">#因为上述程序通常只能压缩一个文件，所以在压缩多个文件时非常不方便</span></span><br><span class="line"><span class="comment">#所以产生了tar这个打包程序，将多个文件打包成一个文件！</span></span><br><span class="line">*.tar  		tar 程序打包的数据,<span class="comment">#并没有压缩过; </span></span><br><span class="line">*.tar.gz  	tar 程序打包的文件,其中并且经过 gzip 的压缩</span><br><span class="line">*.tar.bz2  	tar 程序打包的文件,其中并且经过 bzip2 的压缩</span><br><span class="line">*.tar.xz  	tar 程序打包的文件,其中并且经过 xz 的压缩</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-单个文件-gz-bz2-xz"><a href="#1-单个文件-gz-bz2-xz" class="headerlink" title="(1) 单个文件: .gz   .bz2   xz"></a>(1) 单个文件: <code>.gz</code>   <code>.bz2</code>   <code>xz</code></h4><p>用法几乎相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-d :解压缩</span><br><span class="line">-c :将压缩的过程产生的数据输出到屏幕上</span><br><span class="line">-k :保留原本的文件</span><br><span class="line">-v :可以显示出原文件/压缩文件案的压缩比等信息;</span><br><span class="line">-# :#为数字的意思,代表压缩等级,默认是6</span><br><span class="line">-l :列出压缩文件的相关信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-打包-tar"><a href="#2-打包-tar" class="headerlink" title="(2) 打包:  tar"></a>(2) 打包:  <code>tar</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-x :解打包或解压缩的功能,可以搭配 -C (大写) 在特定目录解开</span><br><span class="line">-C 目录:这个选项用在解压缩,若要在特定目录解压缩,可以使用这个选项。</span><br><span class="line">-f filename:-f 后面要立刻接要被处理的档名!建议 -f 单独写一个选项啰!(比较不会忘记)</span><br><span class="line"></span><br><span class="line">-c :建立打包文件,可搭配 -v 来察看过程中被打包的档名(filename)</span><br><span class="line">-t :察看打包文件的内容含有哪些档名,重点在察看『档名』就是了;</span><br><span class="line">-v :在压缩/解压缩的过程中,显示正在处理的文件名</span><br><span class="line"></span><br><span class="line">-z :透过 gzip的支持进行压缩/解压缩:此时档名最好为 *.tar.gz</span><br><span class="line">-j :透过 bzip2 的支持进行压缩/解压缩:此时档名最好为 *.tar.bz2</span><br><span class="line">-J :透过 xz的支持进行压缩/解压缩:此时档名最好为 *.tar.xz</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-对于tar-xz-等文件-可采用两种方法解压"><a href="#3-对于tar-xz-等文件-可采用两种方法解压" class="headerlink" title="(3) 对于tar.xz 等文件 可采用两种方法解压"></a>(3) 对于<code>tar.xz</code> 等文件 可采用两种方法解压</h4><ul>
+<li>先将外层用xz解压方式解压,，然后里层用tar解压方式解压：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ xz -d  ***.tar.xz</span><br><span class="line">$ tar -xv -f  ***.tar</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>直接解压：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">解压: $ tar -Jxv -f  ***.tar.xz</span><br><span class="line">压缩: $ tar -Jcv -f  ***.tar.xz    <span class="comment">#compress</span></span><br><span class="line"><span class="comment">#对于tar.gz : 将J改为z</span></span><br><span class="line"><span class="comment">#对于tar.bz2: 将J改为j</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><h4 id="2-1-Ubuntu及类似环境下"><a href="#2-1-Ubuntu及类似环境下" class="headerlink" title="2.1 Ubuntu及类似环境下"></a>2.1 Ubuntu及类似环境下</h4><h5 id="1-deb"><a href="#1-deb" class="headerlink" title="(1) deb"></a>(1) deb</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg -i xxxx.deb</span><br><span class="line"><span class="comment">#对于官⽹已经提供了 Ubuntu 版本 .deb 安装⽂件的，可在官⽹下载 .deb 安装⽂件后，执⾏下⾯的命令安装</span></span><br><span class="line">$ sudo apt install ./&lt;file&gt;.deb</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-rmp"><a href="#2-rmp" class="headerlink" title="(2) rmp"></a>(2) rmp</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将.rpm 包转换为.deb 包（当前⽬录下会⽣成⼀个 deb 安装包)</span></span><br><span class="line">sudo alien xxxx.rpm</span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo dpkg -i xxxx.deb</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-Manjaro"><a href="#2-2-Manjaro" class="headerlink" title="2.2 Manjaro"></a>2.2 Manjaro</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ debtap xxx.deb </span><br><span class="line"><span class="comment"># manjaro需要先使用debtap工具将deb包转换为arch软件包</span></span><br><span class="line"><span class="comment"># 可使用-q跳过问题</span></span><br><span class="line">$ sudo pacman -U xxx.tar.xx </span><br><span class="line"><span class="comment">#然后使用pacman进行安装即可</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-有用的指令"><a href="#3-有用的指令" class="headerlink" title="3. 有用的指令"></a>3. 有用的指令</h3><h4 id="（1）alias"><a href="#（1）alias" class="headerlink" title="（1）alias"></a>（1）alias</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">alias</span> lm=<span class="string">&#x27;ls -al&#x27;</span>  <span class="comment">#表示用lm代表ls -al</span></span><br><span class="line">$ <span class="built_in">unalias</span> xxx 		 <span class="comment">#取消</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以将alias命令加入~/.bashrc ~/.zshrc文件中，永久生效，使用source ～/.xxx更新设置</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="（2）history"><a href="#（2）history" class="headerlink" title="（2）history"></a>（2）history</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">history</span> <span class="comment">#显示历史命令</span></span><br><span class="line">$ !5 <span class="comment"># 执行第5个命令</span></span><br><span class="line">$ !! <span class="comment"># 执行上一个命令</span></span><br><span class="line">$ !xx<span class="comment">#执行以xx开头的命令</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-shell快捷键"><a href="#4-shell快捷键" class="headerlink" title="4. shell快捷键"></a>4. shell快捷键</h3><ul>
+<li><p>移动光标：</p>
+<ul>
+<li><p><code>ctrl</code> + <code>a</code> 最前面</p>
+</li>
+<li><p><code>ctrl</code> + <code>e</code> 最后面</p>
+</li>
+</ul>
+</li>
+<li><p>删除：</p>
+<ul>
+<li><code>ctrl</code> + <code>u</code> 从光标处向前删除</li>
+</ul>
+</li>
+<li><p><code>ctrl</code> + <code>k</code> 向后</p>
+</li>
+</ul>
+<h3 id="5-变量"><a href="#5-变量" class="headerlink" title="5. 变量"></a>5. 变量</h3><ul>
+<li><p>显示变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$&#123;PATH&#125;</span></span><br><span class="line"><span class="comment"># 变量为大写字母</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量的设定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.设定格式：变量名=变量内容</span><br><span class="line">$ myname=cwh</span><br><span class="line"><span class="comment">#注意:等号两边不能接空格,若变量内容有空格,使用单或双引号将内容括起来</span></span><br><span class="line"></span><br><span class="line">2.还需要其他额外的指令所提供的信息时,可以使用反单引号『`指令`』或 『$(指令)』。如：取得核心版本号：</span><br><span class="line">$ version=$(<span class="built_in">uname</span> -r)</span><br><span class="line"></span><br><span class="line">3.增加变量：变量名=<span class="variable">$&#123;变量名&#125;</span>xxx</span><br><span class="line">$ PATH=<span class="variable">$&#123;PATH&#125;</span>:/home/bin</span><br><span class="line"><span class="comment">#因为PATH变量中目录与目录中间以冒号分隔</span></span><br><span class="line">$ name=<span class="variable">$&#123;name&#125;</span><span class="built_in">yes</span> <span class="comment">#在name变量后加上yes</span></span><br><span class="line">4.若该变量需要在其他子程序执行,则需要以 <span class="built_in">export</span> :</span><br><span class="line">$ <span class="built_in">export</span> PATH</span><br><span class="line"></span><br><span class="line">5.取消变量：<span class="built_in">unset</span> 变量名</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将某一目录加入PATH：(以下方法按效力和作用域递增)</li>
+</ul>
+<ol>
+<li><p>直接修改<code>$PATH</code>值：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PATH</span> //查看当前PATH的配置路径</span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/xxx/xxx //将需配置路径加入<span class="variable">$PATH</span> 等号两边一定不能有空格</span><br></pre></td></tr></table></figure>
+
+<p> 生效方法：立即生效</p>
+<p> 有效期限：<code>临时改变</code>，只能在当前的终端窗口中有效，当前窗口关闭后就会恢复原有的path配置</p>
+<p> 用户局限：仅对当前用户</p>
+</li>
+<li><p>修改<code>.bashrc</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ code /.bashrc</span><br><span class="line"><span class="comment">#在最后一行添上：</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/xxx/xxx  </span><br></pre></td></tr></table></figure>
+
+<p>生效方法：</p>
+<ul>
+<li><p>关闭当前终端窗口，重新打开一个新终端窗口就能生效</p>
+</li>
+<li><p>输入“source .bashrc”命令，立即生效</p>
+</li>
+</ul>
+<p>有效期限：永久有效</p>
+<p>用户局限：仅对当前用户</p>
+</li>
+<li><p>修改<code>profile</code>文件或<code>environment</code>文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ code /etc/profile </span><br><span class="line"><span class="comment">#在最后一行添上：</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/xxx/xxx</span><br><span class="line"></span><br><span class="line">$ code /etc/environment</span><br><span class="line"><span class="comment">#在 PATH=/········· 中加入“:/xxx/xxx”</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#个人认为修改profile文件更合适，因为能清晰地看到哪些变量是自己加上的，哪些是系统原有的</span></span><br></pre></td></tr></table></figure>
+
+<p> 生效方法：系统重启</p>
+<p> 有效期限：<code>永久有效</code></p>
+<p> 用户局限：<code>对所有用户</code></p>
+</li>
+</ol>
+</li>
+<li><p>特殊变量: ?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $? 显示指令回传的执行后代码</span><br><span class="line"><span class="comment">#指令正常，返回0</span></span><br><span class="line"><span class="comment">#执行错误，返回非零</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>export：引入变量 </p>
+<p>子程序仅会继承父程序的环境变量, 子程序『不会』继承父程序的『自定义变量』。使用export可以将自定义变量变为环境变量。</p>
+</li>
+<li><p>locale：显示语系   发生乱码，设定系统语系编码即可。</p>
+</li>
+</ul>
+<h2 id="Part2-：some-tips"><a href="#Part2-：some-tips" class="headerlink" title="Part2 ：some tips"></a>Part2 ：some tips</h2><h3 id="1-修改开机默认引导"><a href="#1-修改开机默认引导" class="headerlink" title="1. 修改开机默认引导"></a>1. 修改开机默认引导</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc/default</span><br><span class="line">$ sudo gedit grub  </span><br><span class="line">修改GRUB_DEFAULT的值，ubuntu为0，windows为2</span><br><span class="line">$ sudo update-grub  //更新配置文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-关闭sudo密码"><a href="#2-关闭sudo密码" class="headerlink" title="2. 关闭sudo密码"></a>2. 关闭sudo密码</h3><p>终端输入命令sudo visudo，打开 visudo；</p>
+<p>找到 %sudo ALL&#x3D;(ALL:ALL) ALL 这一行修改为%sudo ALL&#x3D;(ALL:ALL) NOPASSWD:ALL<br>有安全风险，请谨慎使用</p>
+<h3 id="3-kill-进程"><a href="#3-kill-进程" class="headerlink" title="3.  kill 进程"></a>3.  kill 进程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ps -x</span><br><span class="line">$ <span class="built_in">kill</span> -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-wine字体太小"><a href="#4-wine字体太小" class="headerlink" title="4. wine字体太小"></a>4. wine字体太小</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">env</span> WINEPREFIX=<span class="string">&quot;<span class="variable">$HOME</span>/.deepinwine/软件名&quot;</span> winecfg</span><br></pre></td></tr></table></figure>
+
+<h2 id="Part3：Linux基本知识"><a href="#Part3：Linux基本知识" class="headerlink" title="Part3：Linux基本知识"></a>Part3：Linux基本知识</h2><h3 id="1-bin文件夹"><a href="#1-bin文件夹" class="headerlink" title="1. bin文件夹"></a>1. bin文件夹</h3><h4 id="（1）存放脚本"><a href="#（1）存放脚本" class="headerlink" title="（1）存放脚本"></a>（1）存放脚本</h4><p><code>~/bin</code>：个人用户的 script<br><code>/usr/local/bin</code>：存放所有用户都可以使用的 script<br><code>/usr/local/sbin</code>： 存放管理员的 script</p>
+<h3 id="（2）存放其他文件"><a href="#（2）存放其他文件" class="headerlink" title="（2）存放其他文件"></a>（2）存放其他文件</h3><p><code>/usr/local/</code>：大部分是本地用户软件<br><code>/bin或/usr/bin</code>：不是用来放软件的，是用来存放 Linux distribution 专用文件的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/10/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%AC%94%E8%AE%B0/" rel="prev" title="VSCode快捷键笔记">
+      <i class="fa fa-chevron-left"></i> VSCode快捷键笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/15/%E6%B4%9B%E8%B0%B7%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="next" title="洛谷刷题">
+      洛谷刷题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Linux 学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-1%EF%BC%9A-bash"><span class="nav-number">1.1.</span> <span class="nav-text">Part 1： bash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 压缩文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6-gz-bz2-xz"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">(1) 单个文件: .gz   .bz2   xz</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%89%93%E5%8C%85-tar"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">(2) 打包:  tar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AF%B9%E4%BA%8Etar-xz-%E7%AD%89%E6%96%87%E4%BB%B6-%E5%8F%AF%E9%87%87%E7%94%A8%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">(3) 对于tar.xz 等文件 可采用两种方法解压</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Ubuntu%E5%8F%8A%E7%B1%BB%E4%BC%BC%E7%8E%AF%E5%A2%83%E4%B8%8B"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">2.1 Ubuntu及类似环境下</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-deb"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">(1) deb</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-rmp"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">(2) rmp</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Manjaro"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2.2 Manjaro</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%89%E7%94%A8%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 有用的指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89alias"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">（1）alias</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89history"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">（2）history</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-shell%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. shell快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part2-%EF%BC%9Asome-tips"><span class="nav-number">1.2.</span> <span class="nav-text">Part2 ：some tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9%E5%BC%80%E6%9C%BA%E9%BB%98%E8%AE%A4%E5%BC%95%E5%AF%BC"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 修改开机默认引导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%B3%E9%97%ADsudo%E5%AF%86%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 关闭sudo密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-kill-%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.  kill 进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-wine%E5%AD%97%E4%BD%93%E5%A4%AA%E5%B0%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. wine字体太小</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part3%EF%BC%9ALinux%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">1.3.</span> <span class="nav-text">Part3：Linux基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-bin%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. bin文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%AD%98%E6%94%BE%E8%84%9A%E6%9C%AC"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">（1）存放脚本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%AD%98%E6%94%BE%E5%85%B6%E4%BB%96%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.2.</span> <span class="nav-text">（2）存放其他文件</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Henry"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Henry</p>
+  <div class="site-description" itemprop="description">早睡早起</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <!--
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  -->
+  <span class="author" itemprop="copyrightHolder">Henry</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"henrychi.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2021年暑假为美赛做的准备，想不到后来压根没用matlab，哈哈。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matlab学习笔记">
+<meta property="og:url" content="http://henrychi.top/2021/07/23/Matlab%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Henry&#39;s Blog">
+<meta property="og:description" content="2021年暑假为美赛做的准备，想不到后来压根没用matlab，哈哈。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://matlabacademy-content.mathworks.com/4.30/R2021a/cn/content/Importing%20Data/Importing%20Data%20as%20a%20Table/images/sorttablesmall.jpg">
+<meta property="article:published_time" content="2021-07-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-16T12:23:54.000Z">
+<meta property="article:author" content="Henry">
+<meta property="article:tag" content="Matlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://matlabacademy-content.mathworks.com/4.30/R2021a/cn/content/Importing%20Data/Importing%20Data%20as%20a%20Table/images/sorttablesmall.jpg">
+
+<link rel="canonical" href="http://henrychi.top/2021/07/23/Matlab%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Matlab学习笔记 | Henry's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Henry's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://henrychi.top/2021/07/23/Matlab%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Henry">
+      <meta itemprop="description" content="早睡早起">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henry's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Matlab学习笔记
+        </h1>
+
+        <div class="post-meta">
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-23T00:00:00+08:00">2021-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 20:23:54" itemprop="dateModified" datetime="2022-07-16T20:23:54+08:00">2022-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">语言</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">2021年暑假为美赛做的准备，想不到后来压根没用matlab，哈哈。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Matlab-入门"><a href="#Matlab-入门" class="headerlink" title="Matlab 入门"></a>Matlab 入门</h1><h2 id="1-基本语法"><a href="#1-基本语法" class="headerlink" title="1.基本语法"></a>1.基本语法</h2><ol>
+<li><p><code>clear</code> 函数清理工作区。<code>clc</code> 命令清理<strong>命令行窗口</strong>。</p>
+</li>
+<li><p>使用 <code>format</code> 函数控制显示的精度：</p>
+<p>输入 <code>format long</code> 显示更多小数。</p>
+<p>输入 <code>format short</code> 可切换回默认显示。</p>
+</li>
+<li><p>使用 <code>:</code> 运算符并仅指定起始值和最终值。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y = <span class="number">5</span>:<span class="number">8</span></span><br><span class="line">y = </span><br><span class="line">    <span class="number">5</span>    <span class="number">6</span>    <span class="number">7</span>    <span class="number">8</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>运算符使用默认的间距 <code>1</code>，但是您可以指定您自己的间距，如下所示。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">20</span>:<span class="number">2</span>:<span class="number">26</span></span><br><span class="line">x = </span><br><span class="line">    <span class="number">20</span>    <span class="number">22</span>    <span class="number">24</span>    <span class="number">26</span></span><br></pre></td></tr></table></figure>
+
+<p>如果您知道向量中所需的元素数目（而不是每个元素之间的间距），则可以改用 <code>linspace</code> 函数：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">linspace</span>(first,last,number_of_elements)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>转置：x &#x3D; x’</li>
+</ol>
+<p>您可以通过在一条命令中创建行向量并将其全部转置来创建列向量。注意此处使用圆括号来指定运算的顺序。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = (<span class="number">1</span>:<span class="number">2</span>:<span class="number">5</span>)&#x27;</span><br><span class="line">x = </span><br><span class="line">    <span class="number">1</span></span><br><span class="line">    <span class="number">3</span></span><br><span class="line">    <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p><code>rand(2)</code> 命令中的 <code>2</code> 指定输出将为一个 2×2 的随机数矩阵。</p>
+<p><code>rand(2,3)</code> 2 x 3矩阵</p>
+</li>
+<li><p>如何知道现有矩阵的大小？您可以使用 <code>size</code> 函数。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">size</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>您也可以使用一行代码创建与现有矩阵大小相同的矩阵。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rand</span>(<span class="built_in">size</span>(x))</span><br></pre></td></tr></table></figure>
+
+<p><code>numel(y)</code>函数可以获得y中元素的个数</p>
+</li>
+<li><p>使用类似c语言的方式获得数组元素</p>
+</li>
+<li><p>用作索引时，冒号运算符 (<code>:</code>) 可指代该维度中的所有元素。以下语法</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = A(<span class="number">2</span>,:)</span><br><span class="line">会创建一个包含A中第 <span class="number">2</span> 行上所有元素的行向量。</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>冒号运算符可以引用某个值范围。以下语法会创建一个包含矩阵 <code>A</code> 的第 1 行、第 2 行和第 3 行所有元素的矩阵。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = A(<span class="number">1</span>:<span class="number">3</span>,:)</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li><p>单个索引值可用于引用向量元素。例如</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = v(<span class="number">3</span>)会返回向量 `v` 的第 <span class="number">3</span> 个元素</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>您可以结合使用索引与赋值，将数组值更改为与其他元素相等。例如，以下代码将 <code>x(1)</code> 的值更改为 <code>x(2)</code> 的值：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x(<span class="number">1</span>) = x(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MATLAB 的设计让您能够自然地处理数组。例如，您可以将一个标量值与数组中的所有元素相加。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = x + <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>您可以将任意两个大小相同的数组相加。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = x + y</span><br></pre></td></tr></table></figure>
+
+<p>您可以将数组中的所有元素与某个标量相乘或相除。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = <span class="number">2</span>*x</span><br><span class="line">y = x/<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>MATLAB 的函数可在单个命令中对整个向量或值数组执行数学运算。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xSqrt = <span class="built_in">sqrt</span>(x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>*</code> 运算符执行<a target="_blank" rel="noopener" href="http://www.mathworks.com/help/matlab/ref/mtimes.html">矩阵乘法</a>。因此，如果您使用 <code>*</code> 将两个大小相同的向量相乘，则由于内部维度不一致，您将会收到一条错误消息。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = [<span class="number">3</span> <span class="number">4</span>] * [<span class="number">10</span> <span class="number">20</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">错误使用  * </span><br><span class="line">用于矩阵乘法的维度不正确。 </span><br></pre></td></tr></table></figure>
+
+<p>而 <code>.*</code> 运算符执行按元素乘法，允许您将两个大小相同的数组的对应元素相乘。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = [<span class="number">3</span> <span class="number">4</span>] .* [<span class="number">10</span> <span class="number">20</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = </span><br><span class="line">    <span class="number">30</span>    <span class="number">80</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>size</code> 函数可以应用于矩阵，以生成单个输出变量或两个输出变量。使用方括号 (<code>[ ]</code>) 获得多个输出。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[xrow,xcol] = <span class="built_in">size</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>可以使用 <code>max</code> 函数确定向量的最大值及其对应的索引值。<code>max</code> 函数的第一个输出为输入向量的最大值。执行带两个输出的调用时，第二个输出为索引值。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[xMax,idx] = <span class="built_in">max</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>可以使用波浪号字符 (<code>~</code>) 忽略特定输出。</p>
+</li>
+<li><p>您可以使用关系运算符将某个向量或矩阵与单个标量值进行比较。结果是与原始数组相同大小的逻辑数组。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">5</span> <span class="number">10</span> <span class="number">15</span>] &gt; <span class="number">12</span></span><br><span class="line"><span class="built_in">ans</span> = </span><br><span class="line">    <span class="number">0</span>    <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>您可以使用逻辑数组作为数组索引，在这种情况下，MATLAB 会提取索引为 <code>true</code> 的数组元素。以下示例将会提取 <code>v1</code> 中大于 6 的所有元素。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">v = v1(v1 &gt; <span class="number">6</span>)</span><br><span class="line">v =</span><br><span class="line">    <span class="number">6.6678</span></span><br><span class="line">    <span class="number">9.0698</span></span><br></pre></td></tr></table></figure>
+
+<p>使用逻辑索引在数组中重新赋值。例如，如果您要将数组 <code>x</code> 中等于 <code>999</code> 的所有值都替换为值 <code>1</code>，请使用以下语法。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x(x==<span class="number">999</span>) = <span class="number">1</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="2-画图"><a href="#2-画图" class="headerlink" title="2. 画图"></a>2. 画图</h2><h3 id="2-1-plot函数"><a href="#2-1-plot函数" class="headerlink" title="2.1 plot函数"></a>2.1 plot函数</h3><ol>
+<li><p>可以使用 <code>plot</code> 函数在一张图上绘制两个相同长度的向量。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>plot</code> 函数接受一个附加参数。使用该参数，您可以通过在引号中包含不同符号的方式来指定与之对应的颜色、线型和标记样式。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">&quot;r--o&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>以上命令将会绘制一条红色 (<code>r</code>) 虚线 (<code>--</code>)，并使用圆圈 (<code>o</code>) 作为标记。您可以在<a target="_blank" rel="noopener" href="http://www.mathworks.com/help/matlab/ref/linespec.html">线条设定</a>的文档中了解有关可用符号的详细信息。</p>
+</li>
+<li><p>每个绘图命令都创建了一个单独的绘图。要在一张图上先后绘制两条线，请使用 <code>hold on</code> 命令保留之前的绘图，然后添加另一条线。</p>
+<p>启用保留状态时，将继续在同一坐标区上绘图。要恢复默认绘图行为，即其中每个绘图都有自己的坐标区，请输入 <code>hold off</code>。</p>
+<p>任务</p>
+</li>
+<li><p>单独绘制一个向量时，MATLAB 会使用向量值作为 y 轴数据，并将 x 轴数据的范围设置为从 <code>1</code> 到 <code>n</code>（向量中的元素数目）。</p>
+</li>
+<li><p><code>plot</code> 函数接受可选的附加输入，这些输入由一个属性名称和一个关联的值组成。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(y,<span class="string">&quot;LineWidth&quot;</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>以上命令将绘制一条粗线。您可以在<a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/matlab.graphics.chart.primitive.line-properties.html">线条属性</a>文档中了解更多可用属性的详细信息。</p>
+<p>使用 <code>plot</code> 函数时，您可在绘图参数和线条设定符之后添加属性名称-属性值对组。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">&quot;ro-&quot;</span>,<span class="string">&quot;LineWidth&quot;</span>,<span class="number">5</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-2-其他函数"><a href="#2-2-其他函数" class="headerlink" title="2.2 其他函数"></a>2.2 其他函数</h3><ol>
+<li><p>使用 <code>xlim</code> 函数放大所关注的区域。（在画图函数之后）</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xlim([xmin xmax])</span><br><span class="line">例子：</span><br><span class="line"><span class="built_in">plot</span>(f,yfft)</span><br><span class="line">xlim([<span class="number">0</span> <span class="number">1000</span>])</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-3-在图像中添加注释"><a href="#2-3-在图像中添加注释" class="headerlink" title="2.3 在图像中添加注释"></a>2.3 在图像中添加注释</h3><ol>
+<li><p>使用绘图注释函数（例如 <code>title</code>）在绘图中添加标签。</p>
+<p>此类函数的输入是一个字符串。MATLAB 中的字符串是用双引号 (<code>&quot;</code>) 引起来的。</p>
+</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title(<span class="string">&quot;Plot Title&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>使用 <code>ylabel</code> 函数给y轴添加标签 </p>
+</li>
+<li><p>使用 <code>legend</code> 函数为绘图添加图例。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">legend</span>(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="3-导入数据"><a href="#3-导入数据" class="headerlink" title="3.  导入数据"></a>3.  导入数据</h2><ol>
+<li><p>要提取表变量，可以使用<em>圆点表示法</em>：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.VariableName</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>您可以通过在实时脚本的输出窗格中点击表来与表进行交互。例如，您可以使用表的一个变量对表进行排序。<br><img src="https://matlabacademy-content.mathworks.com/4.30/R2021a/cn/content/Importing%20Data/Importing%20Data%20as%20a%20Table/images/sorttablesmall.jpg" alt="img"><br>在您对表感到满意时，您可以通过更新代码使更改永久化。</p>
+</li>
+<li><p>圆点表示法用于提取表变量。要提取行，可以使用常规数组索引。</p>
+<p>尝试提取表的前三行：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top3 = elements(<span class="number">1</span>:<span class="number">3</span>,:)</span><br></pre></td></tr></table></figure>
+
+<p>请注意，<code>top3</code> 也是一个表。</p>
+</li>
+</ol>
+<h1 id="MATLAB-入门之旅摘要"><a href="#MATLAB-入门之旅摘要" class="headerlink" title="MATLAB 入门之旅摘要"></a>MATLAB 入门之旅摘要</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/matlab_env/create-and-edit-variables.html"><code>x = pi</code></a></td>
+<td align="center">使用等号 (<code>=</code>) 创建变量。 左侧 (<code>x</code>) 是变量的名称，其值为右侧 (<code>pi</code>) 的值。</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/learn_matlab/calling-functions.html"><code>y = sin(-5)</code></a></td>
+<td align="center">您可以使用括号提供函数的输入。</td>
+</tr>
+</tbody></table>
+<h2 id="桌面管理"><a href="#桌面管理" class="headerlink" title="桌面管理"></a>桌面管理</h2><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/save.html"><code>save</code></a></td>
+<td align="center"><code>save data.mat</code></td>
+<td align="center">将当前工作区保存到 MAT 文件中。</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/load.html"><code>load</code></a></td>
+<td align="center"><code>load data.mat</code></td>
+<td align="center">将 MAT 文件中的变量加载到工作区。</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/clear.html"><code>clear</code></a></td>
+<td align="center"><code>clear</code></td>
+<td align="center">清除工作区中的所有变量。</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/clc.html"><code>clc</code></a></td>
+<td align="center"><code>clc</code></td>
+<td align="center">清除命令行窗口中的所有文本。</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/format.html"><code>format</code></a></td>
+<td align="center"><code>format long</code></td>
+<td align="center">更改数值输出的显示方式。</td>
+</tr>
+</tbody></table>
+<h2 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>4</code></td>
+<td align="center">标量</td>
+</tr>
+<tr>
+<td align="center"><code>[3 5]</code></td>
+<td align="center">行向量</td>
+</tr>
+<tr>
+<td align="center"><code>[1;3]</code></td>
+<td align="center">列向量</td>
+</tr>
+<tr>
+<td align="center"><code>[3 4 5;6 7 8]</code></td>
+<td align="center">矩阵</td>
+</tr>
+</tbody></table>
+<h2 id="等间距向量"><a href="#等间距向量" class="headerlink" title="等间距向量"></a>等间距向量</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>1:4</code></td>
+<td align="center">使用<a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/ref/colon.html">冒号 (<code>:</code>)</a> 运算符，创建一个从 <code>1</code> 到 <code>4</code>，间距为 <code>1</code> 的向量。</td>
+</tr>
+<tr>
+<td align="center"><code>1:0.5:4</code></td>
+<td align="center">创建一个从 <code>1</code> 到 <code>4</code>，间距为 <code>0.5</code> 的向量。</td>
+</tr>
+<tr>
+<td align="center"><code>linspace(1,10,5)</code></td>
+<td align="center">创建一个包含 <code>5</code> 个元素的向量。这些值从 <code>1</code> 到 <code>10</code> 均匀间隔。</td>
+</tr>
+</tbody></table>
+<h2 id="创建矩阵"><a href="#创建矩阵" class="headerlink" title="创建矩阵"></a>创建矩阵</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>rand(2)</code></td>
+<td align="center">创建一个 <code>2</code> 行 <code>2</code> 列的方阵。</td>
+</tr>
+<tr>
+<td align="center"><code>zeros(2,3)</code></td>
+<td align="center">创建一个 <code>2</code> 行 <code>3</code> 列的矩形矩阵。</td>
+</tr>
+</tbody></table>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>A(end,2)</code></td>
+<td align="center">访问最后一行的第二列中的元素。</td>
+</tr>
+<tr>
+<td align="center"><code>A(2,:)</code></td>
+<td align="center">访问第二行所有元素。</td>
+</tr>
+<tr>
+<td align="center"><code>A(1:3,:)</code></td>
+<td align="center">访问前三行的所有列。</td>
+</tr>
+<tr>
+<td align="center"><code>A(2) = 11</code></td>
+<td align="center">将数组中第二个元素的值更改为 <code>11</code>。</td>
+</tr>
+</tbody></table>
+<h2 id="数组运算"><a href="#数组运算" class="headerlink" title="数组运算"></a>数组运算</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[1 1; 1 1]*[2 2;2 2] ans =     4    4     4    4</code></td>
+<td align="center">执行<a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html#btyv9yp-4">矩阵乘法</a>。</td>
+</tr>
+<tr>
+<td align="center"><code>[1 1; 1 1].*[2 2;2 2] ans =     2    2     2    2</code></td>
+<td align="center">执行<a target="_blank" rel="noopener" href="https://www.mathworks.com/help/matlab/matlab_prog/array-vs-matrix-operations.html#bu90xxy-1">按元素乘法</a>。</td>
+</tr>
+</tbody></table>
+<h2 id="多个输出"><a href="#多个输出" class="headerlink" title="多个输出"></a>多个输出</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[xrow,xcol] = size(x)</code></td>
+<td align="center">将 <code>x</code> 中的行数和列数保存为两个不同变量。</td>
+</tr>
+<tr>
+<td align="center"><code>[xMax,idx] = max(x)</code></td>
+<td align="center">计算 <code>x</code> 的最大值及其对应的索引值。</td>
+</tr>
+</tbody></table>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>doc randi</code></td>
+<td align="center">打开 <code>randi</code> 函数的文档页。</td>
+</tr>
+</tbody></table>
+<h2 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>plot(x,y,&quot;ro-&quot;,&quot;LineWidth&quot;,5)</code></td>
+<td align="center">绘制一条红色 (<code>r</code>) 虚线 (<code>--</code>) 并使用圆圈 (<code>o</code>) 标记，线宽很大。</td>
+</tr>
+<tr>
+<td align="center"><code>hold on</code></td>
+<td align="center">在现有绘图中新增一行。</td>
+</tr>
+<tr>
+<td align="center"><code>hold off</code></td>
+<td align="center">为下一个绘图线条创建一个新坐标区。</td>
+</tr>
+<tr>
+<td align="center"><code>title(&quot;My Title&quot;)</code></td>
+<td align="center">为绘图添加标签。</td>
+</tr>
+</tbody></table>
+<h2 id="使用表"><a href="#使用表" class="headerlink" title="使用表"></a>使用表</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>data.HeightYards</code></td>
+<td align="center">从表 <code>data</code> 中提取变量 <code>HeightYards</code>。</td>
+</tr>
+<tr>
+<td align="center"><code>data.HeightMeters = data.HeightYards*0.9144</code></td>
+<td align="center">从现有数据中派生一个表变量。</td>
+</tr>
+</tbody></table>
+<h2 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[5 10 15] &gt; 12</code></td>
+<td align="center">将向量与值 <code>12</code> 进行比较。</td>
+</tr>
+<tr>
+<td align="center"><code>v1(v1 &gt; 6)</code></td>
+<td align="center">提取 <code>v1</code> 中大于 <code>6</code> 的所有元素。</td>
+</tr>
+<tr>
+<td align="center"><code>x(x==999) = 1</code></td>
+<td align="center">用值 <code>1</code> 替换 <code>x</code> 中等于 <code>999</code> 的所有值。</td>
+</tr>
+</tbody></table>
+<h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><table>
+<thead>
+<tr>
+<th align="center">示例</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>if x &gt; 0.5    y = 3 else    y = 4 end</code></td>
+<td align="center">如果 <code>x</code> 大于 <code>0.5</code>，则将 <code>y</code> 的值设置为 <code>3</code>。  否则，将 <code>y</code> 的值设置为 <code>4</code>。</td>
+</tr>
+<tr>
+<td align="center"><code>for c = 1:3    disp(c) end</code></td>
+<td align="center">循环计数器 (<code>c</code>) 遍历 值 <code>1:3</code>（<code>1</code>、<code>2</code> 和 <code>3</code>）。  循环体显示 <code>c</code> 的每个值。</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Matlab/" rel="tag"># Matlab</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/15/%E6%B4%9B%E8%B0%B7%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" rel="prev" title="洛谷刷题">
+      <i class="fa fa-chevron-left"></i> 洛谷刷题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/30/web_to_app/" rel="next" title="使用命令行调出网页">
+      使用命令行调出网页 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Matlab-%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">Matlab 入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">1.基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%94%BB%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">2. 画图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-plot%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 plot函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 其他函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E5%9C%A8%E5%9B%BE%E5%83%8F%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%B3%A8%E9%87%8A"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 在图像中添加注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.</span> <span class="nav-text">3.  导入数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MATLAB-%E5%85%A5%E9%97%A8%E4%B9%8B%E6%97%85%E6%91%98%E8%A6%81"><span class="nav-number">2.</span> <span class="nav-text">MATLAB 入门之旅摘要</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%8C%E9%9D%A2%E7%AE%A1%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">桌面管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.3.</span> <span class="nav-text">数组类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E9%97%B4%E8%B7%9D%E5%90%91%E9%87%8F"><span class="nav-number">2.4.</span> <span class="nav-text">等间距向量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%9F%A9%E9%98%B5"><span class="nav-number">2.5.</span> <span class="nav-text">创建矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">2.6.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E8%BF%90%E7%AE%97"><span class="nav-number">2.7.</span> <span class="nav-text">数组运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E8%BE%93%E5%87%BA"><span class="nav-number">2.8.</span> <span class="nav-text">多个输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">2.9.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%9B%BE"><span class="nav-number">2.10.</span> <span class="nav-text">绘图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%A1%A8"><span class="nav-number">2.11.</span> <span class="nav-text">使用表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">2.12.</span> <span class="nav-text">逻辑运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B"><span class="nav-number">2.13.</span> <span class="nav-text">编程</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Henry"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Henry</p>
+  <div class="site-description" itemprop="description">早睡早起</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <!--
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  -->
+  <span class="author" itemprop="copyrightHolder">Henry</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+</body>
+</html>

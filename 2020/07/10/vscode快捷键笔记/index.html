@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png">
+  <link rel="mask-icon" href="/images/icon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"henrychi.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="大一暑假在市图书馆学VSCODE快捷键，还记得当时为准备阿萨姆班的面试挺紧张的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VSCode快捷键笔记">
+<meta property="og:url" content="http://henrychi.top/2020/07/10/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Henry&#39;s Blog">
+<meta property="og:description" content="大一暑假在市图书馆学VSCODE快捷键，还记得当时为准备阿萨姆班的面试挺紧张的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190325181538141.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21hb2tlbG9uZzk1,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190325181710513.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21hb2tlbG9uZzk1,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-07-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-16T12:25:02.000Z">
+<meta property="article:author" content="Henry">
+<meta property="article:tag" content="VSCODE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190325181538141.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21hb2tlbG9uZzk1,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://henrychi.top/2020/07/10/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VSCode快捷键笔记 | Henry's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Henry's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://henrychi.top/2020/07/10/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Henry">
+      <meta itemprop="description" content="早睡早起">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Henry's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VSCode快捷键笔记
+        </h1>
+
+        <div class="post-meta">
+	  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-10T00:00:00+08:00">2020-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 20:25:02" itemprop="dateModified" datetime="2022-07-16T20:25:02+08:00">2022-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">大一暑假在市图书馆学VSCODE快捷键，还记得当时为准备阿萨姆班的面试挺紧张的。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Visual-Studio-Code-快捷键学习笔记"><a href="#Visual-Studio-Code-快捷键学习笔记" class="headerlink" title="Visual Studio Code 快捷键学习笔记"></a>Visual Studio Code 快捷键学习笔记</h1><hr>
+<h2 id="1-向左缩进-indent"><a href="#1-向左缩进-indent" class="headerlink" title="1.向左缩进(indent)"></a>1.向左缩进(indent)</h2><blockquote>
+<p>使用<code>crtl</code>+<code>[</code>来实现向左缩进,另一个括号能实现向右,<del>但没啥用</del>但可以用Tab代替  </p>
+</blockquote>
+<h2 id="2-选中多行"><a href="#2-选中多行" class="headerlink" title="2.选中多行"></a>2.选中多行</h2><blockquote>
+<p>使用<code>shift</code>+<code>方向键</code>实现多行选中</p>
+</blockquote>
+<h2 id="3-上下移动"><a href="#3-上下移动" class="headerlink" title="3.上下移动"></a>3.上下移动</h2><blockquote>
+<p>使用<code>ALT</code>+<code>方向键</code>实现上下移动(可配合<code>2</code>中的快捷键实现多行移动) </p>
+</blockquote>
+<h2 id="4-整行复制"><a href="#4-整行复制" class="headerlink" title="4.整行复制"></a>4.整行复制</h2><blockquote>
+<p>使用<code>shift</code>+<code>ALT</code>+<code>方向键(上下)</code>实现整行复制</p>
+</blockquote>
+<h2 id="5-编辑点回退"><a href="#5-编辑点回退" class="headerlink" title="5.编辑点回退"></a>5.编辑点回退</h2><blockquote>
+<p>使用<code>ALT</code>+<code>方向键(左右)</code>实现</p>
+</blockquote>
+<h2 id="6-对-的操作"><a href="#6-对-的操作" class="headerlink" title="6.对{}的操作"></a>6.对{}的操作</h2><p>1.<code>收起</code>或<code>展开</code>花括号内的代码</p>
+<blockquote>
+<p>使用<code>Ctrl</code>+<code>shift</code>+<code>[</code>或<code>]</code>实现</p>
+</blockquote>
+<p>2.跳转到另一个花括号</p>
+<blockquote>
+<p>使用<code>Ctrl</code>+<code>shift</code>+<code>\</code>实现</p>
+</blockquote>
+<p>3.花括号内容的折叠(这有助于快速了解代码格局)</p>
+<ul>
+<li>发音相似:</li>
+</ul>
+<blockquote>
+<p>collapse(折叠)-&gt;K</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20190325181538141.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21hb2tlbG9uZzk1,size_16,color_FFFFFF,t_70" alt="快捷键截图"></p>
+<h2 id="7-查找-x2F-替换"><a href="#7-查找-x2F-替换" class="headerlink" title="7.查找&#x2F;替换"></a>7.查找&#x2F;替换</h2><blockquote>
+<p>使用<code>Ctrl</code>+<code>F</code>查找<br>使用<code>Ctrl</code>+<code>H</code>替换</p>
+</blockquote>
+<h2 id="8-打开调试面板"><a href="#8-打开调试面板" class="headerlink" title="8.打开调试面板"></a>8.打开调试面板</h2><blockquote>
+<p>使用<code>Ctrl</code>+<code>shift</code>+<code>D</code>(debug)</p>
+</blockquote>
+<h2 id="9-唤起终端"><a href="#9-唤起终端" class="headerlink" title="9.唤起终端"></a>9.唤起终端</h2><blockquote>
+<p>使用<code>Ctrl</code>+`打开终端<br>使用<code>Ctrl</code>+<code>shift</code>+` 新建终端<br>使用<code>Ctrl</code>+<code>shift</code>+<code>5</code>拆分终端</p>
+</blockquote>
+<h2 id="10-命令窗口"><a href="#10-命令窗口" class="headerlink" title="10.命令窗口"></a>10.命令窗口</h2><p><img src="https://img-blog.csdnimg.cn/20190325181710513.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21hb2tlbG9uZzk1,size_16,color_FFFFFF,t_70" alt="图片"></p>
+<blockquote>
+<p>输入setting,launch等能打开相应的json文件</p>
+</blockquote>
+<h2 id="11-文本操作快捷键"><a href="#11-文本操作快捷键" class="headerlink" title="11.文本操作快捷键"></a>11.文本操作快捷键</h2><p>Shift + ← &#x2F; → (方向键)：  光标向左&#x2F;向右选中一个字符<br>Ctrl + Shift + ← &#x2F; → (方向键)：  光标向左&#x2F;向右选中一个单词<br>Shift + Home：  光标从当前位置一直选中到行首<br>Shift + End：  光标从当前位置一直选中到行尾</p>
+<p>Home：  光标跳转至行首<br>End：   光标跳转至行尾<br>PgUp：  光标跳转至首行<br>PgDn：  光标跳转至末行<br>Ctrl + ← &#x2F; → (方向键)：  光标向左&#x2F;向右跳转一个单词<br>Ctrl + Home：  光标跳转至首行首个字符前面(文件开头)<br>Ctrl + End：  光标跳转至末行最后一个字符后面(文件结尾)</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VSCODE/" rel="tag"># VSCODE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/15/git/" rel="prev" title="Git笔记">
+      <i class="fa fa-chevron-left"></i> Git笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/02/23/linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Linux 学习笔记">
+      Linux 学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Visual-Studio-Code-%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">Visual Studio Code 快捷键学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%90%91%E5%B7%A6%E7%BC%A9%E8%BF%9B-indent"><span class="nav-number">1.1.</span> <span class="nav-text">1.向左缩进(indent)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%80%89%E4%B8%AD%E5%A4%9A%E8%A1%8C"><span class="nav-number">1.2.</span> <span class="nav-text">2.选中多行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%B8%8A%E4%B8%8B%E7%A7%BB%E5%8A%A8"><span class="nav-number">1.3.</span> <span class="nav-text">3.上下移动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%95%B4%E8%A1%8C%E5%A4%8D%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">4.整行复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E7%BC%96%E8%BE%91%E7%82%B9%E5%9B%9E%E9%80%80"><span class="nav-number">1.5.</span> <span class="nav-text">5.编辑点回退</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%AF%B9-%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.6.</span> <span class="nav-text">6.对{}的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%9F%A5%E6%89%BE-x2F-%E6%9B%BF%E6%8D%A2"><span class="nav-number">1.7.</span> <span class="nav-text">7.查找&#x2F;替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%89%93%E5%BC%80%E8%B0%83%E8%AF%95%E9%9D%A2%E6%9D%BF"><span class="nav-number">1.8.</span> <span class="nav-text">8.打开调试面板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%94%A4%E8%B5%B7%E7%BB%88%E7%AB%AF"><span class="nav-number">1.9.</span> <span class="nav-text">9.唤起终端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3"><span class="nav-number">1.10.</span> <span class="nav-text">10.命令窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E6%96%87%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.11.</span> <span class="nav-text">11.文本操作快捷键</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Henry"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Henry</p>
+  <div class="site-description" itemprop="description">早睡早起</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <!--
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  -->
+  <span class="author" itemprop="copyrightHolder">Henry</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+
+</body>
+</html>
